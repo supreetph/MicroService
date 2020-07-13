@@ -7,9 +7,16 @@ namespace Ecoomerce.Api.Search
 {
     public class SearchRepository : ISearch
     {
-        public Task<(bool isSuccess, dynamic CustomerSearchResult)> SearchAsync(int CustomerID)
+        private readonly IproductService _iproductService;
+        public SearchRepository(IproductService iproductService)
         {
-            return (true, new { message= "jzdhjfahd" });
+            this._iproductService = iproductService;
+
+        }
+        public async Task<(bool isSuccess, dynamic CustomerSearchResult)> SearchAsync(int CustomerID)
+        {
+            var result = await _iproductService.GetProductAsync();
+            return (true, result.products);
         }
     }
 }

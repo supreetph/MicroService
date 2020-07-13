@@ -23,7 +23,7 @@ namespace Ecoomerce.Api.Search.Controllers
             var result = await _search.SearchAsync(criteria.CustomerId);
             if(result.isSuccess)
             {
-                return Ok( (true, result));
+                return Ok( (true, result.CustomerSearchResult));
             }
             else
             {
